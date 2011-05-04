@@ -88,10 +88,16 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 	originalTouch = scrollView.contentOffset.x; // remeber contentOffset at start of gesture
 }
 
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+	[self setContentOffset:CGPointMake(self.frame.size.width * (float)(currentVisiblePage), 0) animated:YES];
+}
+
 #pragma mark - BookPdfScrollViewpageWasLoadedDelegate
 // the PDFScrollView is created and ready to be shown
 -(void)pageWasLoaded:(PDFScrollView*)pdfPage
 {
+	//arrayOfPdfPages - mutable
 	// update arrayOfPdfPages with the new page
 	NSMutableArray* bufferArray = [[NSMutableArray alloc] initWithArray:arrayOfPdfPages];
 	
@@ -121,9 +127,9 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 	else
 		nextPageToShow = currentVisiblePage + 1;
 	
-	if ( nextPageToShow < self.numberOfPages ) // TODO - nextPageToShow never reache the first page
+	if ( nextPageToShow < self.numberOfPages ) 
 		nextPageToShow = self.numberOfPages;
-	if ( nextPageToShow >= ( [arrayOfFill count] - self.numberOfPages )) // TODO - nextPageToShow never reache the last page
+	if ( nextPageToShow >= ( [arrayOfFill count] - self.numberOfPages )) 		
 		nextPageToShow = [arrayOfFill count] - self.numberOfPages;
 	
 	// check if user have just stated dragging 
@@ -146,7 +152,7 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 			}
 		}
 		// we have to show very end of the document
-		if ( nextPageToShow == ( [arrayOfFill count] - self.numberOfPages ) ) // TODO - nextPageToShow never reache the last page
+		if ( nextPageToShow == ( [arrayOfFill count] - self.numberOfPages ) ) 
 		{
 			for ( int i = nextPageToShow - ( self.numberOfPages ); i < (nextPageToShow + self.numberOfPages + 0); i++ )
 			{
@@ -201,7 +207,7 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 			{
 				NSNumber* num = [NSNumber numberWithInt:i];
 				// the page is loaded in background by page number
-				if ([self respondsToSelector:@selector(backgroundLoadPage:)])
+				if ([self respondsToSelector:@selector(backgroundLoadPage:)]) // not neccary
 					[self performSelectorInBackground:@selector(backgroundLoadPage:) withObject:num];
 			}
 		}
@@ -245,6 +251,7 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 // if the objects have the same page number - we remove one of them
 -(void)removeIdenticalPages 
 {
+	// implemetn isEqual method
 	NSMutableArray* arrayDeleteDuplicate = [[NSMutableArray alloc] init]; // array to store pages that should be deleted
 	
 	if ( [arrayOfPdfPages count] > 1 ) // to compare objects we need at least 2 objects
@@ -364,7 +371,7 @@ static float const kIBookPdfScrollViewgridSpace = 50.0f; // space between pdf vi
 	
 	[self predictiPageScrollDirection:self];
 	
-	[self setContentOffset:CGPointMake(self.frame.size.width * (float)(page  + 0), 0) animated:YES];
+	[self setContentOffset:CGPointMake(self.frame.size.width * (float)(page), 0) animated:YES];
 }
 
 @end

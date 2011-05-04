@@ -50,27 +50,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "RabbitHoleReader/BookPdfScrollView.m"
-         timestampString = "325763746.001309"
+         filePath = "RabbitHoleReader/PdfFileCoreWrapper.m"
+         timestampString = "326209442.059855"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "354"
-         endingLineNumber = "354"
-         landmarkName = "-addPagesFrom:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "RabbitHoleReader/BookPdfScrollView.m"
-         timestampString = "325763746.001309"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "335"
-         endingLineNumber = "335"
-         landmarkName = "-clearAllPagesBut:"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

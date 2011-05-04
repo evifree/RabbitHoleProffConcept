@@ -42,7 +42,8 @@ static PdfFileCoreWrapper *sharedInstance = nil;
 		// Open the PDF document
 		NSURL *pdfURL = [[NSBundle mainBundle] URLForResource:kPdfFileCoreWrapperFileName withExtension:nil];
 		pdfRef = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);	
-		maxPage = 77;
+
+		maxPage = CGPDFDocumentGetNumberOfPages(pdfRef);
 	}
 	
 	return self;
